@@ -7,13 +7,16 @@ For more information on this file, see
 https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/3.1/ref/settings/
+https://docs.djangoproject.com/en/3.1/ref/settings/ 
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# print(PROJECT_DIR) 
 
 
 # Quick-start development settings - unsuitable for production
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'pauldjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':  ['%s/templates/' % (PROJECT_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
