@@ -1,0 +1,26 @@
+ {% extends 'base.html' %} 
+ {% block content %}
+
+<h1>hello world</h1>
+<h1>About page</h1>
+<p>
+    {{ my_text|capfirst}} {{ my_number}}
+</p>
+<p>{{my_html|safe}}</p>
+<ul>
+    {% for item in my_list %}
+    {% if item == 534 %}
+    <li>{{ forloop.counter}} == {{ item }}</li>
+    {% elif item >= 488 %}
+    {{ item|add:10}}
+    {% else %}
+   <li>
+    {{ item|add:10000}}
+   </li>       
+    
+    {% endif %}
+
+    {% endfor %}
+</ul>
+
+{% endblock %}
