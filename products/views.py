@@ -1,8 +1,35 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 from .models import Product 
 from .forms import ProductForm,RawProductForm
 
 # Create your views here.
+# def dynamic_lookup_view(request, my_id):
+    # # obj = Product.objects.get(id=my_id)
+    # # obj = get_object_or_404(Product, id=my_id)
+    # try:
+    #     obj = Product.objects.get(id=my_id)
+    # except Product.DoesNotExist:
+    #     raise Http404
+    # context ={
+    #     "object":obj
+    # }
+    # return render(request, "products/product_detail.html", context)
+
+def product_delete_view(request, my_id):
+    obj = get_object_or_404(Product, id=my_id)
+    if request.method == "POST":
+        obj.delete()
+    context ={
+        "object":obj
+    }
+    return render(request, "products/product_delete.html", context)
+
+
+
+
+
+
 # def product_create_view(request):
 #     my_form =RawProductForm()
 #     if request.method =="POST":
@@ -48,15 +75,15 @@ def product_create_view(request):
 
 
 
-def product_detail_view(request):
-    obj = Product.objects.get(id = 1)
-    # context ={
-    #     "title":obj.title,
-    #     "description":obj.description,
-    #     "summary":obj.summary
-    # }
-    context ={
-        "object":obj,
-       }
+# def product_detail_view(request):
+#     obj = Product.objects.get(id = 1)
+#     # context ={
+#     #     "title":obj.title,
+#     #     "description":obj.description,
+#     #     "summary":obj.summary
+#     # }
+#     context ={
+#         "object":obj,
+#        }
     
-    return render(request, "products/product_detail.html", context)
+#     return render(request, "products/product_detail.html", context)
